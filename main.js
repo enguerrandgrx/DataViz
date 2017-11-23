@@ -27,7 +27,7 @@ const div = d3.select("body")
 	.append("div")
 	.style("opacity", 0);
 
-	d3.json("/topojson/countries/USA.json", function(json) {
+	d3.json("https://raw.githubusercontent.com/enguerrandgrx/DataViz/master/topojson/countries/USA.json", function(json) {
 		// Map instagram posts
 		d3.csv("locations.csv", function(data) {
 			svg.selectAll("circle")
