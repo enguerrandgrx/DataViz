@@ -20,7 +20,7 @@ const div = d3.select("body")
 					.append("div")
 					.style("opacity", 0);
 
-d3.csv("massshootings_clean.csv", function(data) {
+d3.csv("massshootings_test.csv", function(data) {
 	d3.json("usa.json", function(states) {
 
 		for(let i = 0; i < states.features.length; i++) {
@@ -33,7 +33,7 @@ d3.csv("massshootings_clean.csv", function(data) {
 			.enter()
 			.append("path")
 			.attr("d", path)
-			.style("fill", "rgb(213,222,217)")
+			.style("fill", "rgb(200,200,217)")
 
 		let c = 0;
 		svg.selectAll("circle")
@@ -46,7 +46,7 @@ d3.csv("massshootings_clean.csv", function(data) {
 				return projection([d.Longitude, d.Latitude])[0]
 			})
 			.attr("cy", (d) => projection([d.Longitude, d.Latitude])[1])
-			.attr("r", 5)
+			.attr("r", (d) => 1 + Math.sqrt(d.Fatalities))
 			.style("fill", "rgb(225, 10, 10)")
 			.style("opacity", 0.85)
 
