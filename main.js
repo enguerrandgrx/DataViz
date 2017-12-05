@@ -1,6 +1,6 @@
 //Width and height of map
 var width = 960;
-var height = 500;
+var height = 600;
 
 // D3 Projection
 var projection = d3.geoAlbersUsa()
@@ -8,47 +8,83 @@ var projection = d3.geoAlbersUsa()
 				   .scale([1000]);          // scale things down so see entire US
 
 // Define path generator
-var path = d3.geoPath()               // path generator that will convert GeoJSON to SVG paths
+const path = d3.geoPath()               // path generator that will convert GeoJSON to SVG paths
 		  	 .projection(projection);  // tell path generator to use albersUsa projection
 
 const svg = d3.select("body")
 					.append("svg")
 					.attr("width", width)
-					.attr("height", height);
+					.attr("height", height)
+					.attr("id", "map");
 
-const div = d3.select("body")
-					.append("div")
-					.style("opacity", 0);
-
-d3.csv("massshootings_test.csv", function(data) {
-	d3.json("usa.json", function(states) {
-
-		for(let i = 0; i < states.features.length; i++) {
-			let jsonState = states.features[i].properties.name;
-
-		}
-
-		svg.selectAll("path")
-			.data(states.features)
-			.enter()
-			.append("path")
-			.attr("d", path)
-			.style("fill", "rgb(200,200,217)")
-
-		let c = 0;
-		svg.selectAll("circle")
-			.data(data)
-			.enter()
-			.append("circle")
-			.attr("cx", function(d) {
-				console.log(c);
-				c = c+1;
-				return projection([d.Longitude, d.Latitude])[0]
-			})
-			.attr("cy", (d) => projection([d.Longitude, d.Latitude])[1])
-			.attr("r", (d) => 1 + Math.sqrt(d.Fatalities))
-			.style("fill", "rgb(225, 10, 10)")
-			.style("opacity", 0.85)
-
-	});
+// Draw the United States Map
+d3.json("usa.json", function(states) {
+	svg.selectAll("path")
+	.data(states.features)
+	.enter()
+	.append("path")
+	.attr("d", path)
+	.style("fill", "rgb(200,200,217)")
 });
+
+// Draw the events on the map depending on the slider modifications
+d3.csv("massshootings_test.csv", function(data) {
+	let mindate = Infinity;
+	let maxdate = -Infinity;
+
+	data.forEach(function(d) {
+		date = Date.parse(d.Date);
+		if(date < mindate) {
+			mindate = date;
+		}
+		if(date > maxdate) {
+			maxdate = date;
+		}
+	});
+
+	draw_map(mindate, maxdate, data)
+	$('#leftvalue').html(new Date(mindate).toDateString());
+	$('#rightvalue').html(new Date(maxdate).toDateString());
+
+	$(function(){
+	  $('#rangeslider').slider({
+			animate: "slow",
+	    range: true,
+	    min: mindate,
+	    max: maxdate,
+			step: 86400000,
+	    values: [ mindate, maxdate],
+	    slide: function( event, ui ) {
+				$('#leftvalue').html(new Date(ui.values[0]).toDateString());
+				$('#rightvalue').html(new Date(ui.values[1]).toDateString());
+	    },
+			change: function( event, ui ) {
+				draw_map(ui.values[0], ui.values[1], data);
+			}
+
+	  });
+	});
+
+});
+
+
+// Drawing events on the map given a dataset
+function draw_map(from, to, data) {
+	svg.selectAll("circle").remove();
+
+	let data_filtered = data.filter(function(row) {
+		date = Date.parse(row['Date']);
+		in_range = (date > from) && (date < to);
+		return in_range;
+	});
+
+	svg.selectAll("circle")
+	.data(data_filtered)
+	.enter()
+	.append("circle")
+	.attr("cx", (d) => projection([d.Longitude, d.Latitude])[0])
+	.attr("cy", (d) => projection([d.Longitude, d.Latitude])[1])
+	.attr("r", (d) => 1 + Math.sqrt(d.Fatalities))
+	.style("fill", "rgb(225, 10, 10)")
+	.style("opacity", 0.2)
+}

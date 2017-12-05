@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- d3 source code for the map-->
 	<script src="d3/d3.v4.min.js"></script>
 	<script src="d3/topojson.v1.min.js"></script>
+
+	<!-- Ariutta source code to zoom on svg -->
+	<script src="zoom/svg-pan-zoom.min.js"></script>
+
+	<!--style source file -->
+	<link rel="stylesheet" href="style.css">
+
+	<!-- jquery libraries and stylesheets for the range slider -->
+	<link rel="stylesheet" type="text/css" media="all" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Acme">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 </head>
 
 <body>
+	<h1 align="center">Mass shootings in the USA</h1>
 	<script type="text/javascript" src='main.js'></script>
+	<div id="container">
+		<div id="leftvalue"></div>
+		<div id="rangeslider"></div>
+		<div id="rightvalue"></div>
+	</div>
 </body>
 
 </html>
