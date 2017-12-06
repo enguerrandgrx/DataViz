@@ -18,7 +18,7 @@ const svg = d3.select("body")
 					.attr("id", "map");
 
 // Draw the United States Map
-d3.json("usa.json", function(states) {
+d3.json("data/usa.json", function(states) {
 	svg.selectAll("path")
 	.data(states.features)
 	.enter()
@@ -28,10 +28,9 @@ d3.json("usa.json", function(states) {
 });
 
 // Draw the events on the map depending on the slider modifications
-d3.csv("massshootings_test.csv", function(data) {
+d3.csv("data/massshootings.csv", function(data) {
 	let mindate = Infinity;
 	let maxdate = -Infinity;
-
 	data.forEach(function(d) {
 		date = Date.parse(d.Date);
 		if(date < mindate) {
@@ -73,16 +72,24 @@ function draw_map(from, to, data) {
 	svg.selectAll("circle").remove();
 
 	let data_filtered = data.filter(function(row) {
+		console.log(projection([row.Longitude, row.Latitude]));
 		date = Date.parse(row['Date']);
 		in_range = (date > from) && (date < to);
 		return in_range;
 	});
-
+	let c = 0;
 	svg.selectAll("circle")
 	.data(data_filtered)
 	.enter()
 	.append("circle")
-	.attr("cx", (d) => projection([d.Longitude, d.Latitude])[0])
+	//.attr("cx", (d) => projection([d.Longitude, d.Latitude])[0])
+	.attr("cx", function(d){
+		console.log(c);
+		c = c + 1;
+		console.log(d.Date);
+		console.log(d.Longitude);
+		return projection([d.Longitude, d.Latitude])[0];
+	})
 	.attr("cy", (d) => projection([d.Longitude, d.Latitude])[1])
 	.attr("r", (d) => 1 + Math.sqrt(d.Fatalities))
 	.style("fill", "rgb(225, 10, 10)")
