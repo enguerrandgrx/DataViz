@@ -24,7 +24,7 @@ d3.json("data/usa.json", function(states) {
 	.enter()
 	.append("path")
 	.attr("d", path)
-	.style("fill", "rgb(200,200,217)")
+	.style("fill", "rgb(200,200,200)")
 });
 
 // Draw the events on the map depending on the slider modifications
@@ -82,16 +82,9 @@ function draw_map(from, to, data) {
 	.data(data_filtered)
 	.enter()
 	.append("circle")
-	//.attr("cx", (d) => projection([d.Longitude, d.Latitude])[0])
-	.attr("cx", function(d){
-		console.log(c);
-		c = c + 1;
-		console.log(d.Date);
-		console.log(d.Longitude);
-		return projection([d.Longitude, d.Latitude])[0];
-	})
+	.attr("cx", (d) => projection([d.Longitude, d.Latitude])[0])
 	.attr("cy", (d) => projection([d.Longitude, d.Latitude])[1])
 	.attr("r", (d) => 1 + Math.sqrt(d.Fatalities))
 	.style("fill", "rgb(225, 10, 10)")
-	.style("opacity", 0.2)
+	.style("opacity", 0.3)
 }
