@@ -6,13 +6,18 @@
 	<script src="https://d3js.org//topojson.v1.min.js"></script>
 
 
-	<!--style source file -->
+	<!-- Style source file -->
 	<link rel="stylesheet" href="css/main.css">
 
-	<!-- jquery libraries and stylesheets for the range slider -->
+	<!-- jQuery libraries and stylesheets for the range slider -->
 	<link rel="stylesheet" type="text/css" media="all" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+	<!-- Stats library for jenks natural classification -->
+	<script type="text/javascript" src="lib/geostats/lib/geostats.min.js"></script>
+	<script type="text/javascript" src="lib/colormap/js-colormaps.js"></script>
+
 </head>
 
 <body>
@@ -34,6 +39,7 @@
 			Show number of
 			<form method="post" action="">
 				<select class="select-style" id="fatorinj">
+					<option value="t">Total</option>
 					<option value="f">Fatalities</option>
 					<option value="i">Injured</option>
 				</select><br>
@@ -49,4 +55,5 @@
 
 </html>
 
+<script type="text/javascript" src='js/helpers.js'></script>
 <script type="text/javascript" src='js/main.js'></script>
