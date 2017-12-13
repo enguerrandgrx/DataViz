@@ -77,9 +77,14 @@ function colormap(value, bounds, cmap) {
   while(value > bounds[c]) {
     c++;
   }
-  let color = interpolateLinearly(0.1 + c/10, cmap);
+  let color = interpolateLinearly(0.1 + c/bounds.length, cmap);
   color = color.map((a) => Math.round(255*a));
+  return rgbToHex(color);
+}
 
+function linearColormap(value, min, max, cmap) {
+  let color = interpolateLinearly((value - min) / max, cmap);
+  color = color.map((a) => Math.round(255*a));
   return rgbToHex(color);
 }
 
@@ -99,18 +104,32 @@ function colorEvents(option) {
 	return color;
 }
 
-function getEvents(d, option) {
+function codeToName(code) {
   let val;
-  switch (option) {
+  switch (code) {
     case 'f':
-      val = d.Fatalities;
+      val = 'Fatalities';
       break;
     case 'i':
-      val = d.Injured;
+      val = 'Injured';
       break;
     case 't':
-      val = d['Total victims'];
+      val = 'Total victims';
       break;
   }
-  return 2 + Math.sqrt(val);
+  return val
+}
+
+function getEvents(d, option) {
+  val = codeToName(option);
+  eventValue = 2 + Math.sqrt(d[val]);
+  return eventValue;
+}
+
+function getYearVictims(data) {
+	groupedData = d3.nest()
+		.key((d) => d.Date.split("-")[0])
+		.rollup(function(v) { return d3.sum(v, (d) => d['Total victims']) })
+		.object(data);
+  return groupedData;
 }
