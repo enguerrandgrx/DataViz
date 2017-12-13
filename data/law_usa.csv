@@ -1,4 +1,4 @@
-,0,Concealed_carry,Open_carry_hand_gun,Open_carry_long_gun,Hand_guns_License,Hand_guns_Registration,Long_guns_Licence,Long_guns_Registration,Shoot_First,Private_seller,Gun_show,Device_Transfert,Report_Missing,College_Campuses,Alcohol,Worship,Sport,Hospital
+,ID,Concealed_carry,Open_carry_hand_gun,Open_carry_long_gun,Hand_guns_License,Hand_guns_Registration,Long_guns_Licence,Long_guns_Registration,Shoot_First,Private_seller,Gun_show,Device_Transfert,Report_Missing,College_Campuses,Alcohol,Worship,Sport,Hospital
 0,NM,1,0,0,1,1,1,1,2,0,0,0,0,2,1,0,0,0
 1,NV,1,0,0,1,1,1,1,0,1,0,0,0,2,0,0,0,0
 2,AZ,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0
