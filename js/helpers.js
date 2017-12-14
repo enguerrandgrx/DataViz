@@ -13,6 +13,15 @@ function getminmaxdate(data) {
   return [mindate, maxdate];
 }
 
+function updateDateText(value1, value2) {
+	$('#leftvalue').html(get_date(value1));
+	$('#rightvalue').html(get_date(value2));
+}
+
+function slideTo(value1, value2) {
+	$("#rangeslider").slider("values", [value1, value2]);
+}
+
 function get_date(d) {
   let monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];

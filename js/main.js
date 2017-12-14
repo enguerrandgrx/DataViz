@@ -6,6 +6,18 @@ var bounds;
 var minDayVictims;
 var maxDayVictims;
 
+function animation() {
+	let maxdate = $( "#rangeslider" ).slider( "option", "max" );
+	let value1 = $( "#rangeslider" ).slider( "option", "min" );
+	let value2 =  value1 + 86400000 * 365 * 5
+	slideTo(value1, value2);
+	setInterval(function() {
+		value1 += 86400000*20;
+		value2 += 86400000*20;
+		slideTo(value1, value2);
+	}, 1);
+}
+
 // D3 Projection
 var projection = d3.geoAlbersUsa()
 				   .translate([width/2, height/2])    // translate to center of screen
@@ -45,7 +57,7 @@ d3.csv("data/massshootings.csv", function(data) {
 		$('#leftvalue').html(get_date(mindate));
 		$('#rightvalue').html(get_date(maxdate));
 
-		$(function(){
+		$(function() {
 			$('#fatorinj').change(function(){
 				let val1 = $('#rangeslider').slider("values", 0);
 				let val2 = $('#rangeslider').slider("values", 1);
@@ -63,10 +75,13 @@ d3.csv("data/massshootings.csv", function(data) {
 					if(ui.values[1] - ui.values[0] < 86400000) {
 						return false;
 					}
-					$('#leftvalue').html(get_date(ui.values[0]));
-					$('#rightvalue').html(get_date(ui.values[1]));
+					updateDateText(ui.values[0], ui.values[1]);
 					draw_map(ui.values[0], ui.values[1], data, $("#fatorinj").val(), states);
-		    }
+		    },
+				change: function( event, ui ) {
+					updateDateText(ui.values[0], ui.values[1]);
+					draw_map(ui.values[0], ui.values[1], data, $("#fatorinj").val(), states);
+				}
 		  });
 		});
 	});
@@ -108,16 +123,11 @@ function draw_map(from, to, data, option, states) {
 		}
 	}
 
-	console.log(minDayVictims)
-	console.log(maxDayVictims)
-
 	svg.selectAll("path")
 		.data(states.features)
-		.style("fill", function(d) {
-			console.log(d.properties.name);
-			console.log(d.properties.victims);
-			return linearColormap(d.properties.victims, minDayVictims, maxDayVictims, cmap);
-		});
+		.style("fill", (d) => linearColormap(d.properties.victims,
+																					minDayVictims,
+																					maxDayVictims, cmap) );
 
 	svg.selectAll("circle")
 	.data(data_filtered)

@@ -4,6 +4,8 @@ body {
 	background-color: #212121;
 }
 
+button:focus {outline:0;}
+
 #allmap {
 	display: flex;
 	justify-content: center;
@@ -18,7 +20,7 @@ body {
 	display: flex;
 }
 
-#filters {
+#sidebar {
 	margin: 50px;
 }
 
@@ -104,24 +106,45 @@ body {
 }
 
 .select-style {
-    border: 1px solid #ccc;
-    width: 200px;
-		height: 30px;
-    border-radius: 3px;
-    overflow: hidden;
-    background: #fafafa;
+  border: 1px solid #ccc;
+  width: 200px;
+	height: 30px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #fafafa;
 }
 
 .select-style select {
-    padding: 5px 8px;
-    width: 130%;
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    background-image: none;
-    -webkit-appearance: none;
+  padding: 5px 8px;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
 }
 
 .select-style select:focus {
-    outline: none;
+  outline: none;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #a54446;
+  position: relative;
+	margin-left: calc(50% - 25px);
+	margin-top: 40px;
+}
+.circle:before {
+  content: '';
+  display: block;
+  border-top: solid 10px transparent;
+  border-left: solid 10px #FFF;
+  border-bottom: solid 10px transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -3px;
 }
