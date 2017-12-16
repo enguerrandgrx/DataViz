@@ -16,12 +16,15 @@ First we take data about shooting, on US Mass Shooting from [Kaggle: US Mass Sho
 
 Second we find data about Fire gun law in US by state on the [theguardian][3] and the number of fire gun on eatch state from [Wikipedia][4]. 
 
-And finaly we extract data about the population for eatch state on 2016 from [wikipedia]: https://fr.wikipedia.org/wiki/D%C3%A9mographie_des_%C3%89tats-Unis, and for previous years from [The Censuse Office]: https://www2.census.gov/programs-surveys/popest/tables/1900-1980/counties/totals/e7079co.txt. 
+And finaly we extract data about the population for eatch state on 2016 from [wikipedia][8], and for previous years from [The Censuse Office][9]. 
 
 [1]: https://www.kaggle.com/zusmani/us-mass-shootings-last-50-years
 [2]: http://www.gunviolencearchive.org/reports/mass-shooting
 [3]: https://www.theguardian.com/world/interactive/2013/jan/15/gun-laws-united-states
 [4]: https://fr.wikipedia.org/wiki/Liste_des_%C3%89tats_am%C3%A9ricains_par_possession_d%27armes_%C3%A0_feu
+[8]: https://fr.wikipedia.org/wiki/D%C3%A9mographie_des_%C3%89tats-Unis
+[9]: https://www2.census.gov/programs-surveys/popest/tables/1900-1980/counties/totals/e7079co.txt
+
 
 Processing Steps: 
 
