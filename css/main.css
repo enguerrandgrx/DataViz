@@ -4,6 +4,11 @@ body {
 	background-color: #212121;
 }
 
+.legendTitle {
+	font: 14px sans-serif;
+	fill: #cecece;
+}
+
 button:focus {outline:0;}
 
 #allmap {
@@ -137,7 +142,8 @@ button:focus {outline:0;}
 	margin-left: calc(50% - 25px);
 	margin-top: 40px;
 }
-.circle:before {
+
+#play:before {
   content: '';
   display: block;
   border-top: solid 10px transparent;

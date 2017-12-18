@@ -22,6 +22,10 @@ function slideTo(value1, value2) {
 	$("#rangeslider").slider("values", [value1, value2]);
 }
 
+function updateSlider() {
+	slideTo(sliderLeft, sliderRight);
+}
+
 function get_date(d) {
   let monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
@@ -91,8 +95,9 @@ function colormap(value, bounds, cmap) {
   return rgbToHex(color);
 }
 
-function linearColormap(value, min, max, cmap) {
-  let color = interpolateLinearly((value - min) / max, cmap);
+function linearColormap(value, max, cmap) {
+  max = max - 0.005;
+  let color = interpolateLinearly(Math.min(value, max) / max, cmap);
   color = color.map((a) => Math.round(255*a));
   return rgbToHex(color);
 }
@@ -141,4 +146,77 @@ function getYearVictims(data) {
 		.rollup(function(v) { return d3.sum(v, (d) => d['Total victims']) })
 		.object(data);
   return groupedData;
+}
+
+function createLegend() {
+  var defs = svg.append("defs");
+
+  var linearGradient = defs.append("linearGradient")
+      .attr("id", "legend-gradient");
+
+  //Set the color for the start (0%)
+  linearGradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", linearColormap(0, 1, cmap));
+
+  //Set the color for the end (100%)
+  linearGradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", linearColormap(1, 1, cmap));
+
+  var legendsvg = svg.append("g")
+  		.attr("class", "legendWrapper")
+
+  legendsvg.append("rect")
+  		.attr("class", "legendRect")
+  		.attr("x", width/2-legendWidth/2)
+  		.attr("y", 25)
+  		.attr("width", legendWidth)
+  		.attr("height", legendHeight)
+  		.style("fill", "url(#legend-gradient)");
+
+  legendsvg.append("text")
+  		.attr("class", "legendTitle")
+  		.attr("x", width/2)
+  		.attr("y", 15)
+  		.style("text-anchor", "middle")
+  		.text("Average Daily Number of Victims for the Selected Period");
+
+  legendsvg.append("text")
+  		.attr("class", "legendTitle")
+  		.attr("x", width/2-legendWidth/2)
+  		.attr("y", 50)
+  		.style("text-anchor", "middle")
+  		.text("0");
+
+  legendsvg.append("text")
+  		.attr("class", "legendTitle")
+  		.attr("x", width/2)
+  		.attr("y", 50)
+  		.style("text-anchor", "middle")
+  		.text((maxDayVictims/2).toFixed(2));
+
+  legendsvg.append("text")
+  		.attr("class", "legendTitle")
+  		.attr("x", width/2+legendWidth/2)
+  		.attr("y", 50)
+  		.style("text-anchor", "middle")
+  		.text(">" + maxDayVictims.toFixed(2));
+}
+
+
+function animation() {
+	clearInterval(moveSlider);
+	sliderLeft = $( "#rangeslider" ).slider( "option", "min" );
+	sliderRight =  sliderLeft + 86400000 * 365 * 5;
+	updateSlider();
+	moveSlider = setInterval(function() {
+		if(sliderRight >= maxdate) {
+			clearInterval(moveSlider);
+		} else {
+			sliderLeft += 86400000*20;
+			sliderRight += 86400000*20;
+			updateSlider();
+		}
+	}, 1);
 }
