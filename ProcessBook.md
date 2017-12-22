@@ -17,15 +17,15 @@ Our audience is very wide, but we targeted in particular people interested by th
 
 At the begining, the dataset on kaggle aroused our curiosity. We started by reading some [kernel][14] and then literature on mass shooting. 
 
-We find some interesting works who inspired us, in particular one from [CNN][15] on this work we can see that the most deadly Maas Shooting are very recent. Moreover there is a huge increasing of attack in US since 2015. 
+We find some interesting work who inspired us, in particular one from [CNN][15]. On this work we can see that the most deadly Mass Shooting are very recent. Moreover there is a huge increase of attacks in the US since 2015. 
 
-Another interesting things is that USA is the first country according to the number of gun by people, this is twice as much in a country as Switzerland who is third. 
+Another interesting thing is that USA is country with the highst number of guns per people. Indeed, this is twice as much as Switzerland who is third. 
 
-All this led us to the interest of the ratio of killed people by state and population over the time and the evolution of law for each state. 
+All this led us to interested our self in the ratio of killed people per state and population and how this ratios has evolved over the time. We also look at how the laws regarding gun have evolved.
 
-After a long research work, we decide to focus on the most recent events, because we have some trouble to find data about evolution of firegun law in each state. 
+After a long research work, we decided to focus on the more recent events, because we had some trouble to find data about the evolution of these laws.
 
-In order to have more data to make statistique for each state according to the law we get some additional [data from the web][2] for the years 2017. 
+In order to have more data to make statistics on each state according to the law we get some additional [data from the web][2] for 2017. 
 
 
 [14]: https://www.kaggle.com/zusmani/us-mass-shootings-last-50-years/kernels
@@ -34,7 +34,7 @@ In order to have more data to make statistique for each state according to the l
 
 ### Dataset
 
-We use Data from different sources. 
+#### We use Data from different sources. 
 
 First we take data about shooting, on US Mass Shooting from [Kaggle: US Mass Shootings][1], then we find data for the year 2017 from [gunviolencearchive][2]. 
 
@@ -50,7 +50,7 @@ And finaly we extract data about the population for eatch state on 2016 from [wi
 [9]: https://www2.census.gov/programs-surveys/popest/tables/1900-1980/counties/totals/e7079co.txt
 
 
-Processing Steps: 
+#### Processing Steps: 
 
 For all the processing we use Python 3.6
 
