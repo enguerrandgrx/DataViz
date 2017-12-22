@@ -91,7 +91,3 @@ try to see if there is less victimes in state where 'First Shoot' is authorized 
 In our web site we try to find the best way to vizualised our dataset, we chose to use an interactive maps to vizualised all events in there context (Location and Time). This interactive maps have a play button witchs allows to see all attacks from 1966 to 2017, who can also chose do manualy select the range who want using the range slice just below the maps. 
 
 We also want to emphasize the increase of killed and injured people over the time, to do this we implement an interactive barplot, witchs is also controle witch the same play button and range slider. The barplot show the average number of killed and injured people over the current periode.
-
-
-Finnaly in order to see the 
-
