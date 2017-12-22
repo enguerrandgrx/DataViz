@@ -2,17 +2,35 @@
 
 ### Overview, motivation, target audiance
 
-1 October 2017, Las Vegas: The Deadliest US Mass Shooting ever 59 killed and 527 people Injured. This kind of news has become more and more regular these last years. The number of attacks had increase as well as their magnitude. 
+1 October 2017, Las Vegas: The Deadliest US Mass Shooting ever 59 killed and 527 people injured. This kind of news has become more and more regular these last years. Indeed, the number of attacks has increased as well as their magnitude. 
 
-In this project our motivation was to try to understand when, where and why those attacks take place. 
+In this project our motivation was to try to understand when and where these attacks take place, and in which context. Moreover it's a subject we don't totally understand at the 
 
-In the first time we sought to best showed the increase of mass shooting over time, and in a second time we are interested at different carateristique at the state scale, such as the population, the number of gun fire by habitant and firegun law. 
+begining and we wanted to have a better understanding. 
+
+Initially we thought it will be best to show the increase of mass shooting over time, and secondly we look more in details how these number varie from one sate to another. 
+
+
+Our audience is very wide, but we targeted in particular people interested by the issue of firegun and who want to have a better understanding of attacks and mass shooting in the US .  
 
 ### Related work and inspiration
 
+At the begining, the dataset on kaggle aroused our curiosity. We started by reading some [kernel][14] and then literature on mass shooting. 
+
+We find some interesting works who inspired us, in particular one from [CNN][15] on this work we can see that the most deadly Maas Shooting are very recent. Moreover there is a huge increasing of attack in US since 2015. 
+
+Another interesting things is that USA is the first country according to the number of gun by people, this is twice as much in a country as Switzerland who is third. 
+
+All this led us to the interest of the ratio of killed people by state and population over the time and the evolution of law for each state. 
+
+After a long research work, we decide to focus on the most recent events, because we have some trouble to find data about evolution of firegun law in each state. 
+
+In order to have more data to make statistique for each state according to the law we get some additional [data from the web][2] for the years 2017. 
 
 
-### What am I trinying to show in my viz ? 
+[14]: https://www.kaggle.com/zusmani/us-mass-shootings-last-50-years/kernels
+[15]: http://edition.cnn.com/2016/06/13/health/mass-shootings-in-america-in-charts-and-graphs-trnd/index.html
+
 
 ### Dataset
 
@@ -50,11 +68,17 @@ As we need the coordinate of eatch shooting we start by filling missing cordinat
 
 After recover all the data we need and cleaning them, we start to visualized our data using python again in order to ge a better insights of the data. 
 
-We use barplot using [seaborn][10] to visualized number of attack, killed and injured poeple by year, then we group by state and sum the number of attack, killed and injured people. At this step we have a good understanding of attacks over the time and at a the state level. 
+We use barplot using [seaborn][10] to visualized number of attack, killed and injured poeple by year, then we group by state and sum the number of attack, killed and injured people. 
+
+At this step we have a good understanding of attacks over the time and at a the state level. 
 
 Our next step was to creat a maps using [d3js][11] of the US coutry with a slide range to have a nice representation of attack over de time by state. 
 
-Then we combine data on fiergun law and our data set. We first select interesting law on this dataset, we select two law, one on the [open][12] and [concealed][13] of firegun and one on the 'First Shoot'. To see is there is a relation about those regulation and the number of attack we merge datafram and make a ratio by the population of each state. For example we try to see if there is less victimes in state where 'First Shoot' is authorized than is those where is prohibited. 
+Then we combine data on fiergun law and our data set. We first select interesting law on this dataset, we select two law, one on the [open][12] and [concealed][13] of firegun and one 
+
+on the 'First Shoot'. To see is there is a relation about those regulation and the number of attack we merge datafram and make a ratio by the population of each state. For example we 
+
+try to see if there is less victimes in state where 'First Shoot' is authorized than is those where is prohibited. 
 
 [10]: https://seaborn.pydata.org/
 [11]: https://d3js.org/
@@ -62,6 +86,12 @@ Then we combine data on fiergun law and our data set. We first select interestin
 [13]: https://en.wikipedia.org/wiki/Concealed_carry_in_the_United_States
 
 
-### Designs 
+### What am I trinying to show in my viz ? Design and Implementation
 
+In our web site we try to find the best way to vizualised our dataset, we chose to use an interactive maps to vizualised all events in there context (Location and Time). This interactive maps have a play button witchs allows to see all attacks from 1966 to 2017, who can also chose do manualy select the range who want using the range slice just below the maps. 
+
+We also want to emphasize the increase of killed and injured people over the time, to do this we implement an interactive barplot, witchs is also controle witch the same play button and range slider. The barplot show the average number of killed and injured people over the current periode.
+
+
+Finnaly in order to see the 
 
