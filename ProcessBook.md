@@ -91,3 +91,15 @@ try to see if there is less victimes in state where 'First Shoot' is authorized 
 In our web site we try to find the best way to vizualised our dataset, we chose to use an interactive maps to vizualised all events in there context (Location and Time). This interactive maps have a play button witchs allows to see all attacks from 1966 to 2017, who can also chose do manualy select the range who want using the range slice just below the maps. 
 
 We also want to emphasize the increase of killed and injured people over the time, to do this we implement an interactive barplot, witchs is also controle witch the same play button and range slider. The barplot show the average number of killed and injured people over the current periode.
+
+
+### Evaluation: 
+#### What did you learn about the data by using your
+#### visualizations? How did you answer your questions? How well does your
+#### visualization work, and how could you further improve it?
+
+We learn that there is a huge increse of injured and killed people in the US since 2015. Indeed there is an increse of attacks. 
+
+With our vizualisation we answers our question since we can now easily know the evolution of mass shooting over the time in the US. Moreover we can also say that laws regarding First Shoot help to reduce the number of killed and injured poelple during attacks. 
+
+To improuve our vizualisation as well as our result we can use more laws, like for example laws on firegun carry and laws about Purchasing, possession, and registration. 
