@@ -92,6 +92,3 @@ In our web site we try to find the best way to vizualised our dataset, we chose 
 
 We also want to emphasize the increase of killed and injured people over the time, to do this we implement an interactive barplot, witchs is also controle witch the same play button and range slider. The barplot show the average number of killed and injured people over the current periode.
 
-
-Finnaly in order to see the 
-
